@@ -1,5 +1,4 @@
 REM   Script: Lab assignment # 1 - DDL, DML, constraints and transaction processing
-REM   Lab assignment # 1 - DDL, DML, constraints and transaction processing
 
 -- Task 1 create a sequence object 
 create sequence my_seq 
@@ -98,8 +97,7 @@ alter table customer
 add constraint customer_username_uq unique(username);
 
 
--- Task 3 Insert three rows in the customer table
--- Task 3 Insert three rows in the customer table
+-- Task 3 Insert three rows in the customer table.
 insert into customer(cust_id, username, passwd, first_name, last_name, credit_type, phone)
 values(my_seq.nextval,'Tsoy', '264', 'Viktor', 'Tsoy', 'high', '01');
 
@@ -110,8 +108,7 @@ insert into customer(cust_id, username, passwd, first_name, last_name, credit_ty
 values(my_seq.nextval,'Peppa', '228', 'Peppa', 'Pig', 'low', '03');
 
 
--- Task 4 Insert two rows in the prod_group table
--- Task 4 Insert two rows in the prod_group table
+-- Task 4 Insert two rows in the prod_group table.
 insert into prod_group(group_id, group_name)
 values(my_seq.nextval,'food');
 
@@ -120,8 +117,6 @@ values(my_seq.nextval,'drinks');
 
 
 -- Task 5 Insert two rows in the product table.
--- Task 5 Insert two rows in the product table
-
 insert into product(prod_id, group_id, prod_name, price)
 -- group_id for this one is 4
 values(my_seq.nextval, (select group_id from prod_group where GROUP_NAME = 'food'), 'bacon', '10');
@@ -131,7 +126,7 @@ insert into product(prod_id, group_id, prod_name, price)
 values(my_seq.nextval, (select group_id from prod_group where GROUP_NAME = 'drinks'), 'vodka', '20');
 
 
--- Task 6 Perform a sale 
+
 -- Task 6 Perform a sale by creating one row in the cust_order table and two rows in the cart table. 
 insert into cust_order(ord_id, cust_id, order_date)
 -- Peppa's id is 3
@@ -147,19 +142,16 @@ values(my_seq.nextval, (SELECT ORD_ID FROM (SELECT ROW_NUMBER() OVER (ORDER BY o
 
 
 -- -- Task 7 Increase the price on all articles by 12%.
--- Task 7 Increase the price on all articles by 12%.
 update product
 set price = price * 1.12;
 
 
--- Task 8 Update the phone number.
 -- Task 8 Update the phone number.
 update customer
 set phone = '112'
 where username = 'Tsoy';
 
 
--- Task 9 Delete all rows from the cust_order table, by using DML. What happens and why!
 -- Task 9 Delete all rows from the cust_order table, by using DML. What happens and why!
 delete
 from cust_order;
